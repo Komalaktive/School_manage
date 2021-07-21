@@ -52,9 +52,9 @@
 
                     <notebook>
                         <page name="name" string="Principle">
-                            <group1>
+                            <group>
                                 <field name="Principle_msg" />
-                            </group1>
+                            </group>
 
                         </page>
 
