@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-   <record id="school_tree_view" model="ir.ui.view">
+    <record id="school_tree_view" model="ir.ui.view">
         <field name="name">school.tree.view</field>
         <field name="model">school.profile</field>
         <field name="arch" type="xml">
-           
+
             <tree>
-                <field name="name" />
+                <field name="name"/>
                 <field name="email"/>
                 <field name="phone"/>
             </tree>
         </field>
-           
+
     </record>
 
     <record id="school_form_view" model="ir.ui.view">
@@ -21,73 +21,76 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                <group>
-                    <group> 
-                        <field name="name" string = "School Name"/>
-                        <field name="email" placeholder="abc@gmail.com"/>
-                        <field name="phone"/>
-                        <field name="is_virtual_class" />
-
-                    
-                        <field name="school_rank" string="school Rank" placeholder="please enter your school Rank here"/>
-                        <field name="result"/>
-                        <field name="address"/>
-                        <field name="contact_id"/>
-                        
-                    </group> 
-       
                     <group>
-                        <field name="establish_date" />
+                        <group>
+                            <field name="name" string="School Name"/>
+                            <field name="email" placeholder="abc@gmail.com"/>
+                            <field name="phone"/>
+                            <field name="is_virtual_class"/>
 
-                        <field name="open_date" />
-                        <field name="school_type" placeholder="please select type" />
+
+                            <field name="school_rank" string="school Rank"
+                                   placeholder="please enter your school Rank here"/>
+                            <field name="result"/>
+                            <field name="address"/>
+                            <field name="contact_id"/>
+                            <field name="school_id"/>
+                            <field name="school_refrence"/>
+
+                        </group>
+
+                        <group>
+                            <field name="establish_date"/>
+
+                            <field name="open_date"/>
+                            <field name="school_type" placeholder="please select type"/>
+                        </group>
                     </group>
-                </group>
-                <group>
-                    <field name="documents" filename="document_name"/>
-                    <field name="document_name" invisible="1"/>
-                    <field name="school_image" widget="image" style="width:95px; height:95px;margin-left:55px;"/>
-                    <field name="school_description"/>
-                </group>
+                    <group>
+                        <field name="documents" filename="document_name"/>
+                        <field name="document_name" invisible="1"/>
+                        <field name="school_image" widget="image" style="width:95px; height:95px;margin-left:55px;"/>
+                        <field name="school_description"/>
+                    </group>
 
                     <notebook>
                         <page name="name" string="Principle">
                             <group>
-                                <field name="Principle_msg" />
+                                <field name="Principle_msg"/>
                             </group>
 
                         </page>
 
                         <page name="name" string="Teacher">
                             <group>
-                                <field name="Teacher_msg" />
+                                <field name="Teacher_msg"/>
                             </group>
                         </page>
                     </notebook>
 
-            </sheet>
+                </sheet>
             </form>
         </field>
     </record>
 
-<record id="school_search_view" model="ir.ui.view">
-            <field name="model">school.profile</field>
-            <field name="arch" type="xml">
-                <search string="School">
-                    <field name="name"/>
-                    <field name="school_description"/>
-                    <field name="phone"/>
-                    <filter string="private" name="private" domain="[('school_type','=', 'private')]"/>
-                    <filter string="Public" name="public" domain="[('school_type','=', 'public')]"/>
-                    <group expand="1" string="Group By">
-                        <filter name="establish_date" string="establish_date" context="{'group_by':'establish_date'}"
+    <record id="school_search_view" model="ir.ui.view">
+        <field name="model">school.profile</field>
+        <field name="arch" type="xml">
+            <search string="School">
+                <field name="name"/>
+                <field name="school_description"/>
+                <field name="phone"/>
+                <filter string="private" name="private" domain="[('school_type','=', 'private')]"/>
+                <filter string="Public" name="public" domain="[('school_type','=', 'public')]"/>
+                <group expand="1" string="Group By">
+                    <filter name="establish_date" string="establish_date" context="{'group_by':'establish_date'}"
                             help="Group Students Course Wise"/>
 
-                    </group>
+                </group>
 
-                </search>
-            </field>
-        </record>
+            </search>
+        </field>
+    </record>
 
 
     <record id="school_action" model="ir.actions.act_window">
