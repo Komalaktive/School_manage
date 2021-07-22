@@ -42,6 +42,13 @@ class StudentInfo(models.Model):
         verify_resolution=True,
     )
     school_description = fields.Html(string="Description")
-    contact_id = fields.Many2one("res.partner", string="Contact detail")
+    # contact_id = fields.Many2one("res.partner", string="Contact detail")
     school_id = fields.Many2one("school.profile", string="Contact detail")
     school_refrence = fields.Many2one("student.student", string="refrence")
+
+
+    class  StudentProfile(models.Model):
+        _name = "school.information"
+
+        school_list = fields.One2many("school.profile","school_type",string="School List")
+        

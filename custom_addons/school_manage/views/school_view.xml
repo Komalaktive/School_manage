@@ -33,7 +33,7 @@
                                    placeholder="please enter your school Rank here"/>
                             <field name="result"/>
                             <field name="address"/>
-                            <field name="contact_id"/>
+                           <!--  <field name="contact_id"/> -->
                             <field name="school_id"/>
                             <field name="school_refrence"/>
 
@@ -51,6 +51,7 @@
                         <field name="document_name" invisible="1"/>
                         <field name="school_image" widget="image" style="width:95px; height:95px;margin-left:55px;"/>
                         <field name="school_description"/>
+                        <!-- <field name="school_list"/> -->
                     </group>
 
                     <notebook>
