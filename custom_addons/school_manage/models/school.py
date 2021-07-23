@@ -5,6 +5,7 @@ from odoo import models, fields
 
 class StudentInfo(models.Model):
     _name = "school.profile"
+    _description = "School Management"
 
     name = fields.Char(string="School Name", help="this is school Name", required=True)
     email = fields.Char(string="Email")
@@ -44,11 +45,11 @@ class StudentInfo(models.Model):
     school_description = fields.Html(string="Description")
     # contact_id = fields.Many2one("res.partner", string="Contact detail")
     school_id = fields.Many2one("school.profile", string="Contact detail")
-    school_refrence = fields.Many2one("student.student", string="refrence")
+    # school_reference = fields.Many2one("student.student", string="reference")
 
-
-    class  StudentProfile(models.Model):
-        _name = "school.information"
-
-        school_list = fields.One2many("school.profile","school_type",string="School List")
-        
+    #
+    # class  StudentProfile(models.Model):
+    #     _name = "school.information"
+    #
+    #     school_list = fields.One2many("school.profile","school_type",string="School List")
+    #

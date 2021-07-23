@@ -19,9 +19,11 @@
 
 from odoo import fields, models
 
-class StudentProfile(models.Model):
+class Student(models.Model):
     _name = 'student.student'
-    _description = 'student.student'
+    _description = 'Student Management'
 
     name = fields.Char(string="Student Name" )
-    student_id = fields.Many2one("school.profile",string="School Name")
+    roll_no = fields.Integer(string="RollNo")
+    address =fields.Char(string="Address")
+    teacher_ids = fields.One2many("teacher.teacher","student_id",string="teacher")
