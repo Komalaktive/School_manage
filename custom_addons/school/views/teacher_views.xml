@@ -22,8 +22,16 @@
               <field name="name" string="Teacher Name"/>
               <field name="language" string="School Name"/>
               <field name="student_id"/>
+              <field name="res_partners_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
+             <!--  <field name="res_partners_ids" widget="many2many_kanban"> -->
+
             </group>
           </sheet>
+           <div class="oe_chatter">
+              <field name="message_follower_ids"/>
+              <field name="activity_ids"/>
+              <field name="message_ids"/>
+          </div>
         </form>
       </field>
     </record>

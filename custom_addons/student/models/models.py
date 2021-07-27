@@ -21,7 +21,10 @@ from odoo import fields, models
 
 class StudentProfile(models.Model):
     _name = 'student.student'
+   
+
+
     _description = 'student.student'
 
     name = fields.Char(string="Student Name" )
-    student_id = fields.Many2one("school.profile",string="School Name")
+    student_id = fields.Many2one("school.profile",string="School Name",)

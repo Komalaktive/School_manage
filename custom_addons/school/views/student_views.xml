@@ -22,6 +22,8 @@
             <group>
               <group>
                 <field name="name" string="Student Name"/>
+                  <field name="student_gender" widget='radio' options="{'horizontal': true}"/>
+
               </group>
               <group>
                 <field name="roll_no" string="Roll No"/>
@@ -39,6 +41,11 @@
                 </page>
             </notebook>
           </sheet>
+           <div class="oe_chatter">
+              <field name="message_follower_ids"/>
+              <field name="activity_ids"/>
+              <field name="message_ids"/>
+          </div>
         </form>     
       </field>
     </record>

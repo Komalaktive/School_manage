@@ -46,10 +46,16 @@ class StudentInfo(models.Model):
     # contact_id = fields.Many2one("res.partner", string="Contact detail")
     school_id = fields.Many2one("school.profile", string="Contact detail")
     # school_reference = fields.Many2one("student.student", string="reference")
-
-    #
+    res_partners =  fields.Many2many("res.partner", string="Res partner")
+    student_gender = fields.Selection(
+        [("Female", "female"), ("Male", "male"), ("Others","others")],
+        string="Gender",
+        required=True,
+    )
+    
     # class  StudentProfile(models.Model):
     #     _name = "school.information"
     #
     #     school_list = fields.One2many("school.profile","school_type",string="School List")
     #
+   

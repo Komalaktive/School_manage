@@ -35,7 +35,10 @@
                             <field name="address"/>
                            <!--  <field name="contact_id"/> -->
                             <field name="school_id"/>
-<!--                            <field name="school_reference"/>-->
+                            <field name="res_partners"/>
+                            <field name="student_gender" widget='radio' options="{'horizontal': true}"/>
+
+
 
                         </group>
 
