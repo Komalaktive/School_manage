@@ -10,6 +10,7 @@
                 <field name="name"/>
                 <field name="email"/>
                 <field name="phone"/>
+                <field name="active"/>
             </tree>
         </field>
 
@@ -23,9 +24,10 @@
                 <sheet>
                     <group>
                         <group>
+                            <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
                             <field name="name" string="School Name"/>
-                            <field name="email" placeholder="abc@gmail.com"/>
-                            <field name="phone"/>
+                            <field name="email" placeholder="abc@gmail.com" widget="email"/>
+                            <field name="phone" widget="phone"/>
                             <field name="is_virtual_class"/>
 
 
@@ -37,10 +39,11 @@
                             <field name="school_id"/>
                             <field name="res_partners"/>
                             <field name="student_gender" widget='radio' options="{'horizontal': true}"/>
-
-
+                            <field name="active" widget="boolean_toggle"/>
 
                         </group>
+
+                        <group><field name="school_image" widget="image"  nolabel="1" style="width:95px; height:95px;margin-left:20rem;"/></group>
 
                         <group>
                             <field name="establish_date"/>
@@ -52,7 +55,6 @@
                     <group>
                         <field name="documents" filename="document_name"/>
                         <field name="document_name" invisible="1"/>
-                        <field name="school_image" widget="image" style="width:95px; height:95px;margin-left:55px;"/>
                         <field name="school_description"/>
                         <!-- <field name="school_list"/> -->
                     </group>

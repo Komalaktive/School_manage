@@ -14,6 +14,8 @@ This module contains all the common details of collage student.
         "security/ir.model.access.csv",
         "views/school_view.xml",
         "views/sale_view.xml",
+        "views/purchase_view.xml",
+        "views/contact_view.xml",
     ],
     "demo": [],
     "installable": True,

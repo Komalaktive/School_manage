@@ -9,7 +9,7 @@ class StudentInfo(models.Model):
 
     name = fields.Char(string="School Name", help="this is school Name", required=True)
     email = fields.Char(string="Email")
-    phone = fields.Char("Phone")
+    phone = fields.Char(string="Phone")
     is_virtual_class = fields.Boolean(
         string="Virtual class support?", help="this is boolean flag which will"
     )
@@ -52,6 +52,7 @@ class StudentInfo(models.Model):
         string="Gender",
         required=True,
     )
+    active = fields.Boolean(string="active", default=True)
     
     # class  StudentProfile(models.Model):
     #     _name = "school.information"

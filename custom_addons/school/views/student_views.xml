@@ -9,6 +9,7 @@
           <field name="name" string="Student Name" />
           <field name="roll_no" string="Roll No" />
           <field name="address" string="Address" />
+          <field name="field_with_url" widget="url"/>
         </tree>     
       </field>
     </record>
@@ -23,6 +24,9 @@
               <group>
                 <field name="name" string="Student Name"/>
                   <field name="student_gender" widget='radio' options="{'horizontal': true}"/>
+                  <field name="is_agreed" widget="website_redirect_button"/>
+                  <field name="field_with_url" widget="url"/>
+
 
               </group>
               <group>
@@ -33,6 +37,8 @@
             <notebook> 
                 <page string="Teacher Menu">
                   <field name="teacher_ids">
+                   <!--  <field name="partner_ids" widget="many2many_tags_avatar" write_model="calendar.contacts" write_field="partner_id" avatar_field="image_128"/> -->
+
                     <tree editable="true">
                         <field name="name"/>
                         <field name="language"/>
