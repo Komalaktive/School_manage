@@ -54,9 +54,5 @@ class StudentInfo(models.Model):
     )
     active = fields.Boolean(string="active", default=True)
     
-    # class  StudentProfile(models.Model):
-    #     _name = "school.information"
-    #
-    #     school_list = fields.One2many("school.profile","school_type",string="School List")
-    #
+    _sql_constraints = [('name_unique','unique(name)',"please enter unique school name, Given school name already exists.")]
    

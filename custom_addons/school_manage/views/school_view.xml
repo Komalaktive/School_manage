@@ -37,7 +37,6 @@
                             <field name="address"/>
                            <!--  <field name="contact_id"/> -->
                             <field name="school_id"/>
-                            <field name="res_partners"/>
                             <field name="student_gender" widget='radio' options="{'horizontal': true}"/>
                             <field name="active" widget="boolean_toggle"/>
 
@@ -52,6 +51,9 @@
                             <field name="school_type" placeholder="please select type"/>
                         </group>
                     </group>
+
+                     <group><field name="res_partners"/></group> 
+                     
                     <group>
                         <field name="documents" filename="document_name"/>
                         <field name="document_name" invisible="1"/>
