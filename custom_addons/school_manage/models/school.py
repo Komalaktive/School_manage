@@ -54,5 +54,7 @@ class StudentInfo(models.Model):
     )
     active = fields.Boolean(string="active", default=True)
     
-    _sql_constraints = [('name_unique','unique(name)',"please enter unique school name, Given school name already exists.")]
-   
+    _sql_constraints = [('name_unique','unique(name)',"please enter unique school name, Given school name already exists."),
+    ('email_unique','unique(email)',"please enter unique email id, Given email id already exist."),
+    ('phone_unique','unique(phone)',"please enter another phone number, Given phone number already exist.")]
+  
