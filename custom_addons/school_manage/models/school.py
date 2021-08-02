@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields
+from odoo import models, fields, api
+from openerp.exceptions import ValidationError
 
 
 class StudentInfo(models.Model):
@@ -14,7 +15,7 @@ class StudentInfo(models.Model):
         string="Virtual class support?", help="this is boolean flag which will"
     )
     school_rank = fields.Integer(
-        string="School Rank", help="This is school rank,", required=True, default=100
+        string="School Rank", help="This is school rank,", default=100
     )
     result = fields.Float(string="Result", help="this is tool tip")
     address = fields.Text(
@@ -53,8 +54,25 @@ class StudentInfo(models.Model):
         required=True,
     )
     active = fields.Boolean(string="active", default=True)
-    
+
+
     _sql_constraints = [('name_unique','unique(name)',"please enter unique school name, Given school name already exists."),
     ('email_unique','unique(email)',"please enter unique email id, Given email id already exist."),
-    ('phone_unique','unique(phone)',"please enter another phone number, Given phone number already exist.")]
-  
+    ('phone_unique','unique(phone)',"please enter another phone number, Given phone number already exist."),
+    ('school_rank', 'CHECK (school_rank>1)', 'School Rank must be positive!')]
+
+
+    @api.constrains('school_rank')
+    def _check_something(self):
+        for record in self:
+            if record.school_rank < 4:
+                raise ValidationError("u r not able to get this rank!!!!")
+
+    @api.constrains('phone')
+    def _check_phone_number(self):
+        for rec in self:
+            if rec.phone and len(rec.phone) != 10:
+                raise ValidationError(("Must be enter 10 Digits of Mobile Number!!!!!!!!!!!!"))
+        return True
+
+    

@@ -23,6 +23,7 @@
               <field name="language" string="School Name"/>
               <field name="student_id"/>
               <field name="res_partners_ids" widget="many2many_tags" options="{'color_field': 'color'}" help="please select atleast one student" />
+              <!-- <field name="age"/> -->
 
              <!--  <field name="res_partners_ids" widget="many2many_kanban"> -->
 

@@ -13,35 +13,7 @@
       </field>
     </record>
 
-
-    <!-- actions opening views on models -->
-
-   
-
-
-    <!-- server action to the one above -->
-
-    <!-- <record model="ir.actions.server" id="student_action_server">
-      <field name="name">student server</field>
-      <field name="model_id" ref="model_student_student"/>
-      <field name="state">code</field>
-      <field name="code">
-        <form>
-          <sheet>
-            <group>
-              <group>
-                <field name="name" placeholder="Enter Your Name"/>
-                <field name="student_id" placeholder="Enter Your Student Name" />
-              </group>
-
-            </group>
-          </sheet>
-
-        </form>
-      </field>
-    </record> -->
-
-     <record model="ir.actions.act_window" id="student_action_window">
+<record model="ir.actions.act_window" id="student_action_window">
       <field name="name">student window</field>
       <field name="res_model">stu.student</field>
       <field name="view_mode">tree,form</field>
