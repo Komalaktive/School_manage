@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
+from odoo import models, fields, api , _
 from openerp.exceptions import ValidationError
 
 
@@ -55,11 +55,24 @@ class StudentInfo(models.Model):
     )
     active = fields.Boolean(string="active", default=True)
 
+    @api.model_create_multi
+    def create(self, values):   
+        print("values of created method ",values)
+        print("self",self)    
+        rtn = super(StudentInfo, self).create(values)
+        print("Return statement", rtn)
+        return rtn
+    def write(self, values):
+        print("values .....",values)
+        rtn = super(StudentInfo, self).write(values)
+        print("Return data ",rtn)
+        return rtn
 
-    _sql_constraints = [('name_unique','unique(name)',"please enter unique school name, Given school name already exists."),
-    ('email_unique','unique(email)',"please enter unique email id, Given email id already exist."),
-    ('phone_unique','unique(phone)',"please enter another phone number, Given phone number already exist."),
-    ('school_rank', 'CHECK (school_rank>1)', 'School Rank must be positive!')]
+
+    # _sql_constraints = [('name_unique','unique(name)',"please enter unique school name, Given school name already exists."),
+    # ('email_unique','unique(email)',"please enter unique email id, Given email id already exist."),
+    # ('phone_unique','unique(phone)',"please enter another phone number, Given phone number already exist."),
+    # ('school_rank', 'CHECK (school_rank>1)', 'School Rank must be positive!')]
 
 
     @api.constrains('school_rank')
@@ -75,4 +88,4 @@ class StudentInfo(models.Model):
                 raise ValidationError(("Must be enter 10 Digits of Mobile Number!!!!!!!!!!!!"))
         return True
 
-    
+        
