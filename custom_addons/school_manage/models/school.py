@@ -60,12 +60,21 @@ class StudentInfo(models.Model):
         print("values of created method ",values)
         print("self",self)    
         rtn = super(StudentInfo, self).create(values)
+        
         print("Return statement", rtn)
         return rtn
     def write(self, values):
         print("values .....",values)
+        values['active'] = True
         rtn = super(StudentInfo, self).write(values)
         print("Return data ",rtn)
+        return rtn
+
+    def copy(self, default = None):
+        print("default values",default)
+        print("self recordset ",self)
+        rtn = super(StudentInfo, self).copy(default=default)
+        print("Return statement",rtn)
         return rtn
 
 
