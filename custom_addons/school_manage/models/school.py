@@ -8,7 +8,7 @@ class StudentInfo(models.Model):
     _name = "school.profile"
     _description = "School Management"
 
-    name = fields.Char(string="School Name", help="this is school Name", required=True)
+    name = fields.Char(string="School Name", help="this is school Name")
     email = fields.Char(string="Email")
     phone = fields.Char(string="Phone")
     is_virtual_class = fields.Boolean(
@@ -32,7 +32,6 @@ class StudentInfo(models.Model):
     school_type = fields.Selection(
         [("public", "public school"), ("private", "private school")],
         string="Type of school",
-        required=True,
         default="public",
     )
     documents = fields.Binary(string="Documents")
@@ -51,9 +50,8 @@ class StudentInfo(models.Model):
     student_gender = fields.Selection(
         [("Female", "female"), ("Male", "male"), ("Others","others")],
         string="Gender",
-        required=True,
     )
-    active = fields.Boolean(string="active", default=True)
+    active = fields.Boolean(string="active")
 
     @api.model_create_multi
     def create(self, values):   
@@ -69,14 +67,33 @@ class StudentInfo(models.Model):
         rtn = super(StudentInfo, self).write(values)
         print("Return data ",rtn)
         return rtn
-
-    def copy(self, default = None):
+    @api.returns('self', lambda value: value.id)
+    def copy(self, default = {}):
+        # default['active'] = False
+        default['name'] = "copy ("+self.name+")"
         print("default values",default)
-        print("self recordset ",self)
+        # print("self recordset ",self)
         rtn = super(StudentInfo, self).copy(default=default)
         print("Return statement",rtn)
+        rtn.school_rank = 3
+        return rtn
+    def unlink(self):
+        # print("self statement ",self)
+        for stud in self:
+            if stud.school_rank > 0:
+                raise UserError("You cannot delete this %s student profile"%stud.name)
+        rtn = super(StudentInfo, self).unlink()
+        # print("Return statement",rtn)
         return rtn
 
+    @api.model
+    def name_create(self,name):
+        print("Self",self)
+        print("School Name",name)
+        rtn = self.create({'name':name})
+        print("rtn",rtn)
+        print("rtn.name_get()[0]",rtn.name_get()[0])
+        return rtn.name_get()[0]
 
     # _sql_constraints = [('name_unique','unique(name)',"please enter unique school name, Given school name already exists."),
     # ('email_unique','unique(email)',"please enter unique email id, Given email id already exist."),
@@ -84,17 +101,38 @@ class StudentInfo(models.Model):
     # ('school_rank', 'CHECK (school_rank>1)', 'School Rank must be positive!')]
 
 
-    @api.constrains('school_rank')
-    def _check_something(self):
-        for record in self:
-            if record.school_rank < 4:
-                raise ValidationError("u r not able to get this rank!!!!")
+    # @api.constrains('school_rank')
+    # def _check_something(self):
+    #     for record in self:
+    #         if record.school_rank < 4:
+    #             raise ValidationError("u r not able to get this rank!!!!")
 
-    @api.constrains('phone')
-    def _check_phone_number(self):
-        for rec in self:
-            if rec.phone and len(rec.phone) != 10:
-                raise ValidationError(("Must be enter 10 Digits of Mobile Number!!!!!!!!!!!!"))
-        return True
+    # @api.constrains('phone')
+    # def _check_phone_number(self):
+    #     for rec in self:
+    #         if rec.phone and len(rec.phone) != 10:
+    #             raise ValidationError(("Must be enter 10 Digits of Mobile Number!!!!!!!!!!!!"))
+    #     return True
+
+    def clear_record_data(self):
+        self.write({
+            'name': '',
+            'email': '',
+            'phone': '',
+            'is_virtual_class': '',
+            'result': '',
+            'address': '',
+            'student_gender': '',
+            'Principle_msg': '',
+            'Teacher_msg': '',
+            'open_date': '',
+            'school_type': '',
+            'documents': '',
+            'document_name': '',
+            'school_image': '',
+            'school_description': '',
+        
+
+        })
 
         
