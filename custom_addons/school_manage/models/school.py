@@ -8,7 +8,7 @@ class StudentInfo(models.Model):
     _name = "school.profile"
     _description = "School Management"
 
-    name = fields.Char(string="School Name", help="this is school Name")
+    name = fields.Char(string="School Name", help="this is school Name", default="kotak school")
     email = fields.Char(string="Email")
     phone = fields.Char(string="Phone")
     is_virtual_class = fields.Boolean(
@@ -51,7 +51,7 @@ class StudentInfo(models.Model):
         [("Female", "female"), ("Male", "male"), ("Others","others")],
         string="Gender",
     )
-    active = fields.Boolean(string="active")
+    active = fields.Boolean(string="active", default="True")
 
     @api.model_create_multi
     def create(self, values):   
@@ -63,10 +63,11 @@ class StudentInfo(models.Model):
         return rtn
     def write(self, values):
         print("values .....",values)
-        values['active'] = True
+        # values['active'] = True
         rtn = super(StudentInfo, self).write(values)
         print("Return data ",rtn)
         return rtn
+
     @api.returns('self', lambda value: value.id)
     def copy(self, default = {}):
         # default['active'] = False
@@ -77,6 +78,7 @@ class StudentInfo(models.Model):
         print("Return statement",rtn)
         rtn.school_rank = 3
         return rtn
+
     def unlink(self):
         # print("self statement ",self)
         for stud in self:
@@ -92,8 +94,16 @@ class StudentInfo(models.Model):
         print("School Name",name)
         rtn = self.create({'name':name})
         print("rtn",rtn)
-        print("rtn.name_get()[0]",rtn.name_get()[0])
+        # print("rtn.name_get()[0]",rtn.name_get()[0])
         return rtn.name_get()[0]
+
+    @api.model
+    def default_get(self, fields_list=[]):
+        print("fields_list",fields_list)
+        rtn = super(StudentInfo, self).default_get(fields_list)
+        print("Return statement",rtn)
+        return rtn
+
 
     # _sql_constraints = [('name_unique','unique(name)',"please enter unique school name, Given school name already exists."),
     # ('email_unique','unique(email)',"please enter unique email id, Given email id already exist."),
