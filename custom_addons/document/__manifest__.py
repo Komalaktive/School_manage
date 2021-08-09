@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "docu_item",
+    'name': "Document",
 
     'summary': """apps.openerp.com""",
 
@@ -14,6 +14,8 @@
     'data': [
         'security/ir.model.access.csv',
         'views/models_views.xml',
+        'views/doctype_views.xml',
+        'views/version_views.xml'
     ],
     "demo": [],
     "installable": True,
