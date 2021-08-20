@@ -2,7 +2,7 @@
 {
     "name": "Demo",
     "summary": """""",
-    "description": """""",
+    "description": """View Inheritance Task""",
     "author": "My Company",
     "website": "http://www.yourcompany.com",
     "category": "Uncategorized",

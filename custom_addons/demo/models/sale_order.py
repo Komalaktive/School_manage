@@ -22,3 +22,5 @@ class Sale(models.Model):
             for line in order.order_line:
                 total_capacity += line.max_on_qty
             order.update({"total_capacity": total_capacity})
+
+
